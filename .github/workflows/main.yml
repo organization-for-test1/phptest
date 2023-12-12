@@ -1,0 +1,18 @@
+name:   testing of php code on local server
+on:
+ push:
+  branches:
+    - main
+jobs:
+ deploy-local-server:
+  name: eploy on local server
+  if: github.ref == "refs/heads/main"
+  runs-on: test
+
+  steps:
+   - name:  check out code
+     uses: actions/checkout@v2
+   - name:  deploy to /var/www/html/api folder
+     run: |
+       echo "${{ PASSWORD }}" | sudo -S cp -r * /var/www/html/api  
+ 
